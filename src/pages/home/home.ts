@@ -10,14 +10,15 @@ import { Platform } from 'ionic-angular';
 export class HomePage {
 
   constructor(public navCtrl: NavController, private qrScanner: QRScanner, public platform: Platform) {
-
-    platform.ready().then(() => { 
+    alert(platform.is('cordova'));
+    platform.ready().then(() => {
       debugger;
     });
 
   }
 
   a() {
+
     this.qrScanner.prepare()
       .then((status: QRScannerStatus) => {
         if (status.authorized) {
@@ -45,6 +46,6 @@ export class HomePage {
           // permission was denied, but not permanently. You can ask for permission again at a later time.
         }
       })
-      .catch((e: any) => console.log('Error is', e));
+      .catch((e: any) => alert('Error is' + e));
   }
 }
